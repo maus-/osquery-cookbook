@@ -37,7 +37,7 @@ directory node['osquery']['dir'] do
   action :create
 end
 
-directory node['osquery']['logdir'] do
+directory node['osquery']['config']['options']['osquery_log_dir'] do
   owner 'root'
   group 'root'
   action :create
@@ -47,13 +47,13 @@ file ::File.join(node['osquery']['dir'], 'osquery.conf') do
   content JSON.pretty_generate(node['osquery']['config'])
 end
 
-template "osqueryd.conf" do
-  path "#{node[:osquery][:dir]}/osqueryd.conf"
-  source "osqueryd.conf.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-end
+#template "osqueryd.conf" do
+#  path "#{node[:osquery][:dir]}/osqueryd.conf"
+#  source "osqueryd.conf.erb"
+#  owner "root"
+#  group "root"
+#  mode "0644"
+#end
 
 template "osquery" do
   path "/etc/init.d/osquery"

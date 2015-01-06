@@ -31,21 +31,17 @@
 RETVAL=0
 prog="osqueryd"
 exec=/usr/bin/osqueryd
-
+lockfile=/var/lock/subsys/osqueryd
 
 
 [ $UID -eq 0 ] && [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
 . /etc/init.d/functions
 
-# osqueryd needs a proper config file so I don't have to source my shim
-
-if [ ! -e <%= node[:osquery][:dir]%>/osqueryd.conf ] ; then
+if [ ! -e <%= node[:osquery][:dir]%>/osquery.conf ] ; then
     echo "No osqueryd config file found in <%= node[:osquery][:dir]%>"
     exit 4
-fi
-
-. <%= node[:osquery][:dir]%>/osqueryd.conf
+    fi
 
 
 start() {
@@ -57,25 +53,11 @@ start() {
         echo "$prog is already running: $PID"
         exit 4
     else
-#        echo -n $"Starting $prog: "
-        daemon $prog --config_path=$config_path \
-                     --config_retriever=$config_retriever \
-                     --db_path=$db_path \
-                     --debug=$debug \
-                     --disable_logging=$disable_logging \
-                     --event_pubsub=$event_pubsub \
-                     --host_identifier=$host_identifier \
-                     --log_receiver=$log_receiver \
-                     --log_result_events=$log_result_events \
-                     --osquery_log_dir=$osquery_log_dir \
-                     --pidfile=$pidfile \
-                     --schedule_splay_percent=$schedule_splay_percent \
-                     --use_in_memory_database=$use_in_memory_database \
-                     --verbose_debug=$verbose_debug \
-                     --worker_threads=$worker_threads &
-                      retval=$?
-                      echo
-                      [ $retval -eq 0 ] && touch $lockfile && success || failure 
+#       echo -n $"Starting $prog: "
+        daemon $prog --config_path=<%=node[:osquery][:dir]%>/osquery.conf &
+               retval=$?
+               echo
+               [ $retval -eq 0 ] && touch $lockfile && success || failure 
     fi
 }
 
