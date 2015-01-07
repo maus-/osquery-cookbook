@@ -7,14 +7,14 @@ default[:osquery][:config][:options][:config_retriever]       = 'filesystem'
 default[:osquery][:config][:options][:debug]                  = 'false'
 default[:osquery][:config][:options][:disable_logging]        = 'false'
 default[:osquery][:config][:options][:event_pubsub]           = 'true'
-default[:osquery][:config][:options][:event_pubsub_expiry]    = '86000'
+default[:osquery][:config][:options][:event_pubsub_expiry]    = 86000
 default[:osquery][:config][:options][:host_identifier]        = 'hostname'
 default[:osquery][:config][:options][:log_receiver]           = 'filesystem'
 default[:osquery][:config][:options][:log_result_events]      = 'true'
-default[:osquery][:config][:options][:schedule_splay_percent] = '10'
+default[:osquery][:config][:options][:schedule_splay_percent] = 10
 default[:osquery][:config][:options][:use_in_memory_database] = 'false'
 default[:osquery][:config][:options][:verbose_debug]          = 'false'
-default[:osquery][:config][:options][:worker_threads]         = '4'
+default[:osquery][:config][:options][:worker_threads]         = 4
 default[:osquery][:config][:scheduledQueries] = 
     [
     {
