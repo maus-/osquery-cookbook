@@ -1,6 +1,7 @@
 osquery-cookbook
 ================
-Like osquery? So do I.
+This cookbook installs a local build of osquery (bundled in this repo) and sets up a proper init script along with a basic config. This is primarily used for local build testing and tinkering. Feel free to modify and use.
 
-
-This cookbook currently only supports CentOS specifically. 
+####Additional Notes
+This cookbook only supports Centos 6.0 or higher.
+This cookbook requires yum/yum-epel for snappy & libunwind-devel
