@@ -53,7 +53,7 @@ template "osqueryd" do
 	mode '751'
 end
 
-service "osquery" do
+service "osqueryd" do
   supports :status => true, :restart => true, :start => true, :stop => true
   action :start
 end
