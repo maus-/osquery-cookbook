@@ -1,6 +1,6 @@
 default[:osquery][:dir]                                       = '/etc/osquery'
 default[:osquery][:config][:options][:osquery_log_dir]        = '/var/log/osquery'
-default[:osquery][:config][:options][:db_path]                = '/etc/osquery/osquery.db'
+default[:osquery][:config][:options][:db_path]                = '/tmp/osquery.db'
 default[:osquery][:config][:options][:pidfile]                = '/var/run/osquery.pid'
 default[:osquery][:config][:options][:lockfile]               = '/var/lock/subsys/osquery'
 default[:osquery][:config][:options][:config_retriever]       = 'filesystem'

@@ -2,14 +2,12 @@
 # Cookbook Name:: osquery
 # Recipe:: default
 #
-# Copyright 2014, Maus Stearns
-#
 # All rights reserved - Do Not Redistribute
 # Basic osquery deployment via chef
 # Typically you would have the RPM in a repo and not local file...
 
 dependencies = %w{ snappy libunwind-devel }
-packages = %w{ osquery-1.2.2-Linux }
+packages = %w{ osquery-1.2.2-133-g3b9c7a7 }
 
 dependencies.each do |dep|
   yum_package dep do
@@ -47,17 +45,9 @@ file ::File.join(node['osquery']['dir'], 'osquery.conf') do
   content JSON.pretty_generate(node['osquery']['config'])
 end
 
-#template "osqueryd.conf" do
-#  path "#{node[:osquery][:dir]}/osqueryd.conf"
-#  source "osqueryd.conf.erb"
-#  owner "root"
-#  group "root"
-#  mode "0644"
-#end
-
-template "osquery" do
-  path "/etc/init.d/osquery"
-	source 'osquery.erb'
+template "osqueryd" do
+  path "/etc/init.d/osqueryd"
+	source 'osqueryd.erb'
 	owner 'root'
 	group 'root'
 	mode '751'
