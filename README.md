@@ -1,7 +1,15 @@
-osquery-cookbook
-================
-This cookbook installs a local build of osquery (bundled in this repo) and sets up a proper init script along with a basic config. This is primarily used for local build testing and tinkering. Feel free to modify and use.
+Description
+===================
+Installs latest stable builds of [osquery](http://osquery.io) provided from [Facebook](http://osquery.io/downloads/).
 
-####Additional Notes
-This cookbook only supports Centos 6.0 or higher.
-This cookbook requires yum/yum-epel for snappy & libunwind-devel
+Requirements
+===================
+Currently this cookbook only supports CentOS {6,7} and Ubuntu {'12.04','14.04'} and requires the apt cookbook for installation on Ubuntu.
+
+Issues
+===================
+Currently daemonization via an init script is only functional on CentOS 6. I know total bummer right? But hey its open source, so please send me a pull request with a better approach on how to do this and I'll happily oblige.
+
+Roadmap
+===================
+Fixing daemonization of the osquery service would be greaaattt....
