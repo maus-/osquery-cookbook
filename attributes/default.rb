@@ -23,9 +23,9 @@ default[:osquery][:config][:scheduledQueries] =
       "interval" => 30
       },
       {
-        "name" => "aprtest",
-        "query" => "SELECT * FROM arp_cache;",
-        "interval" => 110
+        "name" => "listening_ports",
+        "query" => "SELECT uid, name FROM listening_ports l, processes p WHERE l.pid=p.pid;",
+        "interval" => 86400 
       }
     ]
   

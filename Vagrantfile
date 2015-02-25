@@ -19,7 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       build.vm.network :private_network, type: 'dhcp'
       build.berkshelf.enabled = true
       build.vm.provision :chef_solo do |chef|
-        # TODO: chef.json { override ATTR}
         chef.run_list = [
           'recipe[osquery::default]'
         ]
