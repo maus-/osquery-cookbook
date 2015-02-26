@@ -25,9 +25,9 @@ end
 case node['platform_family']
 when 'rhel'
   if "#{node['platform_version']}" >= '6' and "#{node['platform_version']}" < '7'
-    yum_repo_package = "https://osquery-packages.s3.amazonaws.com/centos6/noarch/osquery-s3-centos6-repo-1-0.0.noarch.rpm"
+    yum_repo_package = 'https://osquery-packages.s3.amazonaws.com/centos6/noarch/osquery-s3-centos6-repo-1-0.0.noarch.rpm'
   elsif "#{node['platform_version']}" >= '7'
-    yum_repo_package = "https://osquery-packages.s3.amazonaws.com/centos7/noarch/osquery-s3-centos7-repo-1-0.0.noarch.rpm"
+    yum_repo_package = 'https://osquery-packages.s3.amazonaws.com/centos7/noarch/osquery-s3-centos7-repo-1-0.0.noarch.rpm'
   end
   remote_file "#{Chef::Config[:file_cache_path]}/osquery-repo.rpm" do
     source yum_repo_package
@@ -45,10 +45,10 @@ when 'rhel'
   end
   
 when 'debian'
-  apt_repository "osquery" do
+  apt_repository 'osquery' do
     uri "https://osquery-packages.s3.amazonaws.com/#{node['lsb']['codename']}"
     distribution node['lsb']['codename']
-    components ["main"]
+    components ['main']
     keyserver 'keyserver.ubuntu.com'
     key 'C9D8B80B'
     notifies :install, 'apt_package[osquery]'
@@ -59,7 +59,7 @@ when 'debian'
   end
 end
 
-service "osqueryd" do
+service 'osqueryd' do
   action :start
   not_if { File.exist?(node[:osquery][:config][:options][:pidfile]) } 
 end
