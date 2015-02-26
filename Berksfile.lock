@@ -3,7 +3,6 @@ DEPENDENCIES
   osquery
     path: .
     metadata: true
-  runit
 
 GRAPH
   apt (2.6.1)
